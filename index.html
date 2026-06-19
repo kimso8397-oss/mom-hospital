@@ -126,6 +126,9 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
     <h1>🏥 엄마 병원 기록</h1>
     <div class="sub">진료 기록 및 건강 현황 대시보드 · 2026년 6월 기준</div>
   </div>
+  <button onclick="location.reload()" style="background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.4);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+    🔄 새로고침
+  </button>
 </header>
 
 <div class="tab-nav">
@@ -300,7 +303,10 @@ const records = [
   {date:"2026-01-07",type:"진료(검진)",hospital:"힐링 의원",category:"정신 건강",detail:"우울증 및 불면증. 잡생각으로 처음 내원"},
   {date:"2026-01-20",type:"진료(검진)",hospital:"경희대 병원",category:"정형외과",detail:"강석형 교수. MRI 비교 → 협착증·관절염 있으나 70대 나이 감안하면 나쁘지 않음. 약물 치료 권장"},
   {date:"2026-03-18",type:"진료(검진)",hospital:"경희대병원",category:"정형외과",detail:"약 더 쎈 걸로 변경. 타이레놀 추가. 수술 시 OLIF 척추유합술 필요"},
-  {date:"2026-06-08",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 명의 진료 예정"},
+  {date:"2026-06-08",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 명의. 다른 약 처방, 두 달 먹고 재진. 약 먹고 계속 아프면 유합술 받아야 함. 이미 뼈가 뒤틀려서 다른 어떤 시술도 소용없음. 일상생활에 못 견딜 정도면 수술. 아니면 버티는 게 최우선. 수술 시 일주일 정도 입원."},
+  {date:"2026-06-19",type:"진료(검진)",hospital:"방병원",category:"정형외과",detail:"오른쪽 어깨 수술 안 한 쪽 MRI 촬영. 6/25(목) 결과보고 수술 결정. 이후 왼쪽 수술한 쪽도 보기로. 엄마가 아프다 하니 재파열인지 볼 예정. MRI 비보험 — 진료 당일 결과 보면 50만 원, 다른 날 보면 30만 원."},
+  {date:"2026-06-25",type:"진료(검진)",hospital:"방병원",category:"정형외과",detail:"어깨 MRI 결과"},
+  {date:"2026-08-05",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 재진"},
   {date:"2028-08-01",type:"진료(검진)",hospital:"서울대 병원",category:"뇌",detail:"뇌 MRI + 조원상 교수 진료 (1년 전 미리 예약 필요)"},
 ];
 
@@ -436,9 +442,32 @@ function toggleOpinion(btn, e) {
 }
 
 // ── MODAL ───────────────────────────────
+// 부위별 카드 → 관련 기록 필터 설정
+// cats: 카테고리 일치, keywords: 상세 내용 키워드 포함 여부 (둘 다 지정 시 AND 조건)
+const statusFilters = {
+  "심장/혈관":    {cats:['심장','혈관'],  keywords:[]},
+  "허리/척추":    {cats:['정형외과'],     keywords:['허리','척추','디스크','협착','경막','유합술','OLIF','신경외']},
+  "뇌/동맥경화":  {cats:['뇌'],           keywords:[]},
+  "갑상선":       {cats:['갑상선'],       keywords:[]},
+  "오른쪽 무릎":  {cats:['정형외과'],     keywords:['무릎','인공관절','연골']},
+  "어깨":         {cats:['정형외과'],     keywords:['어깨','회전근개','견봉','석회 제거']},
+  "방광":         {cats:['방광'],         keywords:[]},
+  "정신건강":     {cats:['정신 건강'],    keywords:['우울','불면','정신','수면','불안']},
+  "고혈압/고지혈":{cats:['혈관'],         keywords:[]},
+  "유방":         {cats:['가슴'],         keywords:[]},
+};
+
 function openCatModal(cat, title, e) {
   if (e) e.stopPropagation();
-  const filtered = records.filter(r => r.category === cat).sort((a,b) => b.date.localeCompare(a.date));
+  const sf = statusFilters[title] || {cats:[cat], keywords:[]};
+  const filtered = records.filter(r => {
+    const catMatch = sf.cats.length === 0 || sf.cats.includes(r.category);
+    if (sf.keywords.length > 0) {
+      const kwMatch = sf.keywords.some(kw => r.detail.includes(kw));
+      return catMatch && kwMatch;
+    }
+    return catMatch;
+  }).sort((a,b) => b.date.localeCompare(a.date));
   document.getElementById('modalTitle').textContent = `${title} 관련 진료 기록 (${filtered.length}건)`;
   const body = document.getElementById('modalBody');
   body.innerHTML = '';
