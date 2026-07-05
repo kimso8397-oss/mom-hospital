@@ -124,7 +124,7 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 <header>
   <div>
     <h1>🏥 엄마 병원 기록</h1>
-    <div class="sub">진료 기록 및 건강 현황 대시보드 · 2026년 6월 기준</div>
+    <div class="sub">진료 기록 및 건강 현황 대시보드 · 2026년 7월 기준</div>
   </div>
   <button onclick="location.reload()" style="background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.4);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
     🔄 새로고침
@@ -134,7 +134,7 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 <div class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('status',this)">🩺 건강 현황</button>
   <button class="tab-btn" onclick="switchTab('records',this)">📋 진료 기록</button>
-  <button class="tab-btn" onclick="switchTab('meds',this)">💊 복용약 <span style="font-size:10px;background:#e74c3c;color:#fff;border-radius:10px;padding:1px 6px;margin-left:3px;">11</span></button>
+  <button class="tab-btn" onclick="switchTab('meds',this)">💊 복용약 <span style="font-size:10px;background:#e74c3c;color:#fff;border-radius:10px;padding:1px 6px;margin-left:3px;">13</span></button>
 </div>
 
 <!-- ═══ TAB 1: 건강 현황 ═══ -->
@@ -183,7 +183,7 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 <div class="tab-content" id="tab-meds">
 <div class="container">
   <div class="section">
-    <div class="section-title">💊 현재 복용약 <span style="font-weight:400;font-size:12px;color:#888">— 총 11종 · 기준일: 2026년 6월 4일</span></div>
+    <div class="section-title">💊 현재 복용약 <span style="font-weight:400;font-size:12px;color:#888">— 총 13종 · 기준일: 2026년 7월 4일</span></div>
     <div class="meds-updated">처방 기간 만료로 제외된 약: 베타믹서방정, 케이캡정, 동아오팔몬정, 타이레놀, 티미드정, 모사린정, 라베미니정</div>
     <div id="medSection"></div>
   </div>
@@ -306,6 +306,7 @@ const records = [
   {date:"2026-06-08",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 명의. 다른 약 처방, 두 달 먹고 재진. 약 먹고 계속 아프면 유합술 받아야 함. 이미 뼈가 뒤틀려서 다른 어떤 시술도 소용없음. 일상생활에 못 견딜 정도면 수술. 아니면 버티는 게 최우선. 수술 시 일주일 정도 입원."},
   {date:"2026-06-19",type:"진료(검진)",hospital:"방병원",category:"정형외과",detail:"오른쪽 어깨 수술 안 한 쪽 MRI 촬영. 6/25(목) 결과보고 수술 결정. 이후 왼쪽 수술한 쪽도 보기로. 엄마가 아프다 하니 재파열인지 볼 예정. MRI 비보험 — 진료 당일 결과 보면 50만 원, 다른 날 보면 30만 원."},
   {date:"2026-06-25",type:"진료(검진)",hospital:"방병원",category:"정형외과",detail:"MRI 결과 — 견봉 쇄골 관절 관절염. 물이 차있음. 염증. 회전근개 부분 파열. 어깨가 전반적으로 지저분한 상태로 수술로 깨끗이 정리 필요. 수술 시 입원 3일 예상. 비용 350만 원 정도."},
+  {date:"2026-07-04",type:"진료(검진)",hospital:"유항맥서울외과의원",category:"항문",detail:"배변이 시원하지 않고 소변을 보거나 방귀를 뀔 때 변이 조금씩 묻어나와 진료. 나이에 따른 괄약근 약화도 있으나 묽은 변의 영향이 더 큰 것으로 설명받음. 변을 덜 묽게 하는 약 처방."},
   {date:"2026-08-05",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 재진"},
   {date:"2028-08-01",type:"진료(검진)",hospital:"서울대 병원",category:"뇌",detail:"뇌 MRI + 조원상 교수 진료 (1년 전 미리 예약 필요)"},
 ];
@@ -331,14 +332,18 @@ const statusData = [
    desc:"인공관절 수술 완료 (2024-04). 왼쪽은 10년 후 고려",
    opinion:"2024년 4월 오른쪽 무릎 인공관절 수술이 잘 마무리되었습니다. 인공관절의 수명은 보통 15~20년으로, 과도한 충격과 무리한 관절 사용을 피하는 것이 수명 연장에 핵심입니다. 수영이나 자전거처럼 관절에 충격이 없는 운동을 꾸준히 하시길 권합니다.",
    next:"정기 추적 관찰 (6개월~1년)"},
-  {title:"어깨",icon:"💪",level:"yellow",status:"관찰 중",cat:"정형외과",
-   desc:"왼쪽 회전근개 봉합 수술 완료 (2024-07). 오른쪽 부분파열 주사치료 중",
-   opinion:"왼쪽 어깨 회전근개 봉합 수술 이후 힘줄 유착이 진행 중이나, 무거운 것을 들거나 팔을 머리 위로 올리는 동작은 재파열 위험이 있어 주의가 필요합니다. 오른쪽은 부분파열 상태로 콜라겐 주사로 관리 중이나, 파열이 진행되면 추가 수술이 필요할 수 있으므로 증상 변화를 주의 깊게 관찰해야 합니다.",
-   next:"정기 추적 및 재활 운동 지속"},
+  {title:"어깨",icon:"💪",level:"orange",status:"수술 고려",cat:"정형외과",
+   desc:"왼쪽 회전근개 봉합 수술 완료. 오른쪽 관절염·염증·부분파열로 수술 권유",
+   opinion:"2026년 6월 오른쪽 어깨 MRI에서 견봉·쇄골 관절염, 관절액, 염증과 회전근개 부분파열이 확인되었습니다. 방병원에서는 관절 내부를 정리하는 수술을 권유했으며 약 3일 입원이 예상됩니다. 왼쪽 수술 부위 통증도 있어 재파열 여부를 함께 추적할 예정입니다.",
+   next:"오른쪽 어깨 수술 여부 결정 및 왼쪽 재평가"},
   {title:"방광",icon:"💧",level:"yellow",status:"관리 중",cat:"방광",
    desc:"과민성 방광. 약물 장기 복용 중",
    opinion:"과민성 방광은 이미 방광 근육이 과민한 상태로 변형된 것으로, 완치보다는 증상 관리가 치료 목표입니다. 케겔 운동(3초 조이기·1초 풀기·10회·하루 5세트)을 꾸준히 하는 것이 방광 근육 조절에 실질적으로 도움이 됩니다.",
    next:"정기 약 처방 유지"},
+  {title:"장/항문",icon:"🟤",level:"yellow",status:"관리 중",cat:"항문",
+   desc:"묽은 변과 괄약근 약화로 변이 조금씩 묻어나는 증상. 약 처방 시작",
+   opinion:"2026년 7월 진료에서 나이에 따른 괄약근 약화가 일부 확인되었지만, 묽은 변이 증상을 더 크게 만드는 것으로 설명받았습니다. 우선 변을 덜 묽게 하는 약을 복용하며 배변 상태와 증상 변화를 관찰합니다.",
+   next:"처방약 복용 후 배변 상태와 증상 변화 확인"},
   {title:"정신건강",icon:"🧘",level:"yellow",status:"치료 중",cat:"종합",
    desc:"서울힐링정신건강의학과 처방 중. 우울·불안·수면 관련 약물 복용",
    opinion:"2021년 서울대 종합검진에서 경미한 우울 소견이 있었고, 현재 정신건강의학과에서 항우울제(에스시탈로프람), 수면제(트라조돈, 멜라토닌), 항불안제(로라제팜)를 처방받아 복용 중입니다. 이 약들은 처방 기간이 14일로 짧게 나와 있어 정기적인 재처방이 필요합니다. 로라제팜(벤조디아제핀)은 의존성 위험이 있으므로, 의사 지시 없이 임의로 복용량을 늘리지 않는 것이 중요합니다.",
@@ -354,7 +359,8 @@ const statusData = [
 ];
 
 const upcoming = [
-  {date:"2026-06-08",title:"강남세브란스 허리 명의 진료",badge:"orange",badgeText:"예정",detail:"허리 협착증/디스크 전문 진료. 경희대 이후 추가 소견 확인"},
+  {date:"2026-08-05",title:"강남세브란스 허리 재진",badge:"orange",badgeText:"예정",detail:"6월 8일 처방약을 두 달 복용한 뒤 통증 변화와 척추유합술 필요 여부 재평가"},
+  {date:"일정 확인",title:"오른쪽 어깨 수술 여부 결정",badge:"red",badgeText:"중요",detail:"견봉·쇄골 관절염, 염증, 회전근개 부분파열. 수술 시 약 3일 입원 예상"},
   {date:"~2025년 10월 이후",title:"고대 심장 재진",badge:"red",badgeText:"중요",detail:"2024-10-30 이후 1년 뒤 재진. 가슴 불편감·호흡 곤란 시 즉시 내원"},
   {date:"연 1~2회",title:"갑상선 기능 검사 (TSH, T4)",badge:"green",badgeText:"수술 후",detail:"씬지로이드 용량 조정 위해 필수. 고대 병원"},
   {date:"2027년 예약 시작",title:"서울대 뇌 MRI + 조원상 교수 (2028-08)",badge:"orange",badgeText:"주의",detail:"뇌동맥류 5년 추적. 1년 전(2027년 8월)에 예약 전화 필요. ☎ 1588-5700"},
@@ -399,6 +405,15 @@ const medications = [
     {name:"라스피린캡슐 100/5mg",cls:"cardio",type:"순환계용약 (아스피린 + 혈관 보호)",component:"aspirin (enteric coated) + 성분 복합",dose:"1캡슐 · 1일 1회",hospital:"굿모닝플러스외과의원",prescribed:"2026.03.24",days:"90일",expiring:false,
      desc:"장용성 아스피린으로 혈소판 응집을 억제해 혈전(피떡) 형성을 막습니다. 협심증과 동맥경화가 있는 경우 뇌경색·심근경색 예방을 위한 핵심 약물입니다.",
      note:"수술 전 1주일 이상 중단 필요. 위장 자극 있으면 식후 복용"},
+  ]},
+  // 장·항문
+  {group:"🟠 장 / 항문",cards:[
+    {name:"포리부틴정",cls:"digest",type:"위장운동조절제",component:"trimebutine maleate",dose:"처방전 지시대로",hospital:"유항맥서울외과의원",prescribed:"2026.07.04",days:"2026.07.18까지",expiring:false,
+     desc:"위장관 운동을 조절하고 항경련 작용을 통해 복통, 소화불량 등 여러 소화기 증상을 개선하는 약입니다.",
+     note:"처방받은 용법대로 복용. 이상 증상이 있으면 처방 의료기관 또는 약국에 문의"},
+    {name:"실콘정",cls:"digest",type:"설사·변비치료제",component:"calcium polycarbophil",dose:"처방전 지시대로",hospital:"유항맥서울외과의원",prescribed:"2026.07.04",days:"2026.07.18까지",expiring:false,
+     desc:"변의 수분을 흡수하거나 유지해 변의 굳기를 조절하고 정상적인 배변활동을 돕는 약입니다.",
+     note:"충분한 물과 함께 복용. 복용 후 심한 복통이나 배변 이상이 지속되면 의료진 상담"},
   ]},
   // 갑상선
   {group:"🟢 갑상선",cards:[
