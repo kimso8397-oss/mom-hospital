@@ -97,6 +97,7 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 .med-card.cardio{border-left-color:#e74c3c;}
 .med-card.thyroid{border-left-color:#27ae60;}
 .med-card.digest{border-left-color:#f39c12;}
+.med-card.ortho{border-left-color:#e67e22;}
 .med-card.expiring{background:#fffbf0;border-color:#f1c40f;border-left-color:#e67e22;}
 .med-top{display:flex;align-items:flex-start;gap:8px;grid-column:1/-1;}
 .med-name{font-size:13px;font-weight:700;color:#1a3a4a;}
@@ -105,6 +106,7 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 .med-card.cardio .med-type-badge{background:#fdecea;color:#c0392b;}
 .med-card.thyroid .med-type-badge{background:#e8f8f0;color:#27ae60;}
 .med-card.digest .med-type-badge{background:#fef9e7;color:#d68910;}
+.med-card.ortho .med-type-badge{background:#fef3e8;color:#d35400;}
 .med-card.expiring .med-type-badge{background:#fef0d3;color:#d35400;}
 .med-meta{font-size:11px;color:#7f8c8d;margin-top:3px;}
 .med-desc{font-size:11px;color:#4a5568;line-height:1.6;grid-column:1/-1;margin-top:4px;}
@@ -134,7 +136,7 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 <div class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('status',this)">🩺 건강 현황</button>
   <button class="tab-btn" onclick="switchTab('records',this)">📋 진료 기록</button>
-  <button class="tab-btn" onclick="switchTab('meds',this)">💊 복용약 <span style="font-size:10px;background:#e74c3c;color:#fff;border-radius:10px;padding:1px 6px;margin-left:3px;">13</span></button>
+  <button class="tab-btn" onclick="switchTab('meds',this)">💊 복용약 <span style="font-size:10px;background:#e74c3c;color:#fff;border-radius:10px;padding:1px 6px;margin-left:3px;">17</span></button>
 </div>
 
 <!-- ═══ TAB 1: 건강 현황 ═══ -->
@@ -183,8 +185,8 @@ header .sub{font-size:11px;opacity:.7;margin-top:3px;}
 <div class="tab-content" id="tab-meds">
 <div class="container">
   <div class="section">
-    <div class="section-title">💊 현재 복용약 <span style="font-weight:400;font-size:12px;color:#888">— 총 13종 · 기준일: 2026년 7월 4일</span></div>
-    <div class="meds-updated">처방 기간 만료로 제외된 약: 베타믹서방정, 케이캡정, 동아오팔몬정, 타이레놀, 티미드정, 모사린정, 라베미니정</div>
+    <div class="section-title">💊 현재 복용약 <span style="font-weight:400;font-size:12px;color:#888">— 총 17종 · 기준일: 2026년 8월 5일</span></div>
+    <div class="meds-updated">이전 처방 기간 만료로 제외된 약: 베타믹서방정, 케이캡정, 동아오팔몬정, 타이레놀, 티미드정, 모사린정, 라베미니정</div>
     <div id="medSection"></div>
   </div>
 </div>
@@ -310,7 +312,7 @@ const records = [
   {date:"2026-07-15",type:"진료(검진)",hospital:"강북치매안심센터",category:"뇌",detail:"CIST(한국형 인지선별검사) 16점. 학력 및 나이를 감안해서 아직은 정상범위이나, 지금보다 더 아래로 내려가면 1시간짜리 세부 검사를 받아야 함. 평소 먹은 것, 누굴 만났는지, 어딜 갔는지 기록하는 일기를 쓸 것. 운동을 할 것. 1년 뒤 재진 필요."},
   {date:"2026-07-28",type:"진료(검진)",hospital:"오르세 정형외과",category:"정형외과",detail:"류마티스 관절염인지 확인하기 위해 피검사 시행. 검사결과 BUN 25(정상 6~20) 상승, Creatinine 1.13(정상 0.50~0.90) 상승, Uric acid 5.8(정상 2.4~5.7) 경미 상승. 류마티스 인자 RA Factor 14로 기준 <14 대비 경계값(Borderline). CRP 0.07은 정상 범위. 류마티스 인자는 류마티스 관절염이 아니어도 나올 수 있어 류마티스 전문 내과에서 Anti-CCP 등 추가 검사 권유."},
   {date:"2026-07-29",type:"진료(검진)",hospital:"연세류마앤내과의원",category:"내과",detail:"류마티스 재진 때문에 초진 방문. 류마티스 인자 14는 정상 수준으로 설명받음. 콩팥 수치도 크게 걱정할 수준은 아니며, 손 증상은 퇴행성으로 판단. 물리치료 권유. 약은 강남세브란스에서 받은 약이 강한 편이라 따로 추가 처방하지 않음."},
-  {date:"2026-08-05",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 재진"},
+  {date:"2026-08-05",type:"진료(검진)",hospital:"강남세브란스",category:"정형외과",detail:"허리 재진. 약을 먹는다고 해서 어긋난 척추가 맞춰지거나 좁아진 협착 부위가 넓어지는 것은 아니지만, 약을 쓰면서 신경이 적응하면 통증이 줄고 약을 줄이거나 중단해도 큰 차이가 없을 수 있어 수술/추가 치료 없이 지켜볼 수 있다고 설명받음. 3개월치 약 처방다음 내원 시 X-ray 촬영 후 확인. 다음 예약: 2026-11-18 14:30."},
   {date:"2028-08-01",type:"진료(검진)",hospital:"서울대 병원",category:"뇌",detail:"서울대병원 뇌 MRI. 5년 뒤 MRI를 다시 찍고 진료보자고 하셔서 앞당길 수 없음. 외래만 2027년 8월에 보고 MRI는 2028년에 보는 방법도 있으나, MRI 결과를 보고 진료 보는 게 나아서 2028년으로 예약. 예약 일시: 뇌 MRI 8:40, 별관 지하 1층."},
   {date:"2028-08-08",type:"진료(검진)",hospital:"서울대 병원",category:"뇌",detail:"서울대 병원 뇌 MRI 결과 및 조원상 교수 외래 진료. 예약 시간 10:30."},
 ];
@@ -322,8 +324,8 @@ const statusData = [
    next:"다음 재진 ~2025년 10월 (증상 있으면 즉시)"},
   {title:"허리/척추",icon:"🦴",level:"orange",status:"관찰 중",cat:"정형외과",
    desc:"3,4번 디스크 협착 심함. OLIF 척추유합술 가능성. 현재 약물치료 유지",
-   opinion:"3,4번 디스크 협착과 5,6번의 심각한 퇴행이 동반되어 있어 척추 전반의 구조적 부담이 큰 상태입니다. 15년이 넘는 경과를 보면 퇴행 속도가 빠른 편이며, 이대로 진행되면 OLIF 척추유합술이 불가피할 수 있습니다. 체중 감량이 허리 부하를 줄이는 가장 직접적인 방법이고, 코어 근육 강화 운동이 수술 시점을 늦출 수 있는 핵심입니다.",
-   next:"2026-06-08 강남세브란스 명의 진료"},
+   opinion:"3,4번 디스크 협착과 5,6번의 심각한 퇴행이 동반되어 있어 척추 전반의 구조적 부담이 큰 상태입니다. 2026년 8월 5일 강남세브란스 재진에서 세레브렉스, 달리제, 오팔몬, 넥사브이를 90일 처방받았습니다. 통증·저림 조절을 우선하면서 수술 시점을 늦추는 방향으로 보이며, 코어 근육 강화와 체중 관리가 계속 중요합니다. 다만 세레브렉스는 진통소염제라 아스피린, 혈압약/이뇨제, 최근 콩팥 수치와 함께 볼 때 위장 출혈·혈압 상승·신장 부담을 주의해야 합니다.",
+   next:"2026-11-18 강남세브란스 허리 재진"},
   {title:"뇌/인지",icon:"🧠",level:"orange",status:"관찰 중",cat:"뇌",
    desc:"뇌동맥류·뇌혈관 협착 추적 중. 2026-07 CIST 16점으로 현재 정상범위이나 추적 필요",
    opinion:"뇌동맥류는 현재 파열 위험이 낮은 위치에 있어 5년 주기 관찰 중입니다. 더 시급한 문제는 전반적인 뇌혈관 협착으로, 고혈압·고지혈증 약물은 단 하루도 빠뜨리지 않는 것이 중요합니다. 2026년 7월 강북치매안심센터 CIST(한국형 인지선별검사)는 16점으로 학력 및 나이를 감안해서 아직은 정상범위이나, 지금보다 더 아래로 내려가면 1시간짜리 세부 검사가 필요하다는 설명을 들었습니다. 평소 먹은 것, 누굴 만났는지, 어딜 갔는지 기록하는 일기와 운동을 유지하는 것이 인지 기능 추적과 관리에 도움이 됩니다.",
@@ -367,7 +369,7 @@ const statusData = [
 ];
 
 const upcoming = [
-  {date:"2026-08-05",title:"강남세브란스 허리 재진",badge:"orange",badgeText:"예정",detail:"6월 8일 처방약을 두 달 복용한 뒤 통증 변화와 척추유합술 필요 여부 재평가"},
+  {date:"2026-11-18",title:"강남세브란스 허리 재진",badge:"orange",badgeText:"예약",detail:"8월 5일 처방약 90일 복용 후 통증·저림 변화와 수술 필요성 재평가"},
   {date:"필요 시",title:"손 통증 물리치료 및 콩팥 수치 재확인",badge:"green",badgeText:"관찰",detail:"연세류마앤내과에서 류마티스보다는 퇴행성 손 증상으로 판단. BUN·Creatinine·요산은 추후 피검사 때 함께 추적"},
   {date:"일정 확인",title:"오른쪽 어깨 수술 여부 결정",badge:"red",badgeText:"중요",detail:"견봉·쇄골 관절염, 염증, 회전근개 부분파열. 수술 시 약 3일 입원 예상"},
   {date:"~2025년 10월 이후",title:"고대 심장 재진",badge:"red",badgeText:"중요",detail:"2024-10-30 이후 1년 뒤 재진. 가슴 불편감·호흡 곤란 시 즉시 내원"},
@@ -424,6 +426,21 @@ const medications = [
     {name:"실콘정",cls:"digest",type:"설사·변비치료제",component:"calcium polycarbophil",dose:"처방전 지시대로",hospital:"유항맥서울외과의원",prescribed:"2026.07.04",days:"2026.07.18까지",expiring:false,
      desc:"변의 수분을 흡수하거나 유지해 변의 굳기를 조절하고 정상적인 배변활동을 돕는 약입니다.",
      note:"충분한 물과 함께 복용. 복용 후 심한 복통이나 배변 이상이 지속되면 의료진 상담"},
+  ]},
+  // 허리·신경통
+  {group:"🦴 허리 / 신경통",cards:[
+    {name:"쎄레브렉스캡슐 200mg",cls:"ortho",type:"소염진통제",component:"celecoxib",dose:"1캡슐 · 1일 2회",hospital:"강남세브란스",prescribed:"2026.08.05",days:"90일",expiring:false,
+     desc:"COX-2 선택적 소염진통제로 허리·관절 통증과 염증을 줄이는 데 사용됩니다.",
+     note:"⚠️ 아스피린 복용 중이면 위장 출혈 위험 증가 가능. 혈압 상승·부종·콩팥 수치 악화 여부 주의. 속쓰림, 흑변, 심한 부종 시 상담"},
+    {name:"달리제정 5mg",cls:"ortho",type:"신경병증성 통증 치료제",component:"mirogabalin besylate",dose:"1정 · 1일 2회",hospital:"강남세브란스",prescribed:"2026.08.05",days:"90일",expiring:false,
+     desc:"신경 손상이나 압박으로 생기는 저림·찌릿한 통증을 줄이는 약입니다.",
+     note:"졸림·어지러움·휘청거림 주의. 낙상 위험이 있어 처음 복용 후 보행 조심"},
+    {name:"오팔몬정 5mcg",cls:"ortho",type:"혈류개선제",component:"limaprost",dose:"1정 · 1일 2회",hospital:"강남세브란스",prescribed:"2026.08.05",days:"90일",expiring:false,
+     desc:"말초 혈류를 개선해 척추관협착증으로 인한 다리 저림이나 통증 완화에 사용됩니다.",
+     note:"아스피린과 함께 복용 중이면 멍·코피·잇몸출혈 등 출혈 경향을 관찰"},
+    {name:"넥사브이정 20mg",cls:"digest",type:"위산분비억제제",component:"esomeprazole",dose:"1정 · 1일 2회",hospital:"강남세브란스",prescribed:"2026.08.05",days:"90일",expiring:false,
+     desc:"위산 분비를 줄여 속쓰림을 완화하고, 소염진통제 복용 중 위장 보호 목적으로 함께 쓰입니다.",
+     note:"씬지로이드와는 복용 시간을 분리하는 것이 좋음. 장기 복용 시 마그네슘·비타민B12 부족 가능성 관찰"},
   ]},
   // 갑상선
   {group:"🟢 갑상선",cards:[
